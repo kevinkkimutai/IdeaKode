@@ -1,9 +1,10 @@
 import "../../assets/login.css";
 import { useRef, useState, useEffect } from "react";
 import { useNavigate} from "react-router-dom";
-import { useDispatch } from "react-redux";
-import { setCredentials, setCurrentUser } from "../../reducers/AuthReducers";
+import { useDispatch, useSelector } from "react-redux";
+import { selectCurrentUser, setCredentials, setCurrentUser } from "../../reducers/AuthReducers";
 import { useLoginMutation } from "../../actions/authActions";
+
 import { toast } from "react-toastify";
 
 function Login() {
@@ -15,6 +16,15 @@ function Login() {
   const navigate = useNavigate();
   const [login] = useLoginMutation();
   const dispatch = useDispatch();
+  const currentUser = useSelector(selectCurrentUser);
+
+  useEffect(() => {
+    // If user is logged in, redirect to dashboard
+    if (currentUser) {
+      navigate('/dashboard');
+    }
+  }, [currentUser]); 
+
   useEffect(() => {
     emailRef.current.focus();
   }, []);
@@ -47,7 +57,8 @@ function Login() {
         setPassword("");
         dispatch(setCredentials(emailData));
         dispatch(setCurrentUser(emailData.user));
-        navigate("/dashboard/vendor");
+        toast.success("Logged-in Successfully");
+        navigate("/dashboard");
       }
     } catch (err) {
       console.log(err);
@@ -135,10 +146,10 @@ function Login() {
                 <div className="field padding-bottom--24">
                   <input type="submit" name="submit" value="Login" />
                 </div>
-                {/* <div className="footer-link">
+                <div className="footer-link">
             <span>Don&apos;t have an account? <a href="/signup" className="text-blue-700 font-semibold hover:text-blue-800">Sign up</a></span>
             
-          </div> */}
+          </div>
               </form>
             </div>
           </div>

@@ -1,8 +1,9 @@
 import { Routes, Route, useNavigate,  } from "react-router-dom";
 import {
-  Dashboard,
+  Landing,
   Login,
   NotFound,
+  SignUp,
 
 } from "./pages";
 import { logOut } from "./reducers/AuthReducers";
@@ -17,6 +18,7 @@ export default function App() {
   const dispatch = useDispatch();
 
   const handleLogout = async (e) => {
+    e.preventDefault();
     dispatch(logOut());
     navigate("/");
     window.location.reload(); // Refresh the page
@@ -28,16 +30,21 @@ export default function App() {
         
         {/* auth section */}
         <Route path="/login" element={<Login />}/>
+        <Route path="/signup" element={<SignUp />}/>
 
-          <Route index element={<Login />}  />
-          <Route element={<RequireAuth />}>
+        
           <Route
               path=""
               element={<Layout handleLogout={handleLogout} />}
             >
+                <Route index element={<Landing />}  />
            {/* other routes section */}
-            <Route path="/dashboard" element={<Dashboard />} />
+
           </Route>
+
+          {/* require auth */}
+          <Route element={<RequireAuth />}>
+          
         </Route>
 
         {/* not Found */}

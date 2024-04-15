@@ -1,14 +1,14 @@
-import { NavBar, Sidebar } from "../components";
+import { Outlet } from "react-router-dom";
+import { Footer, NavBar } from "../components";
 
-const Layout = ({ children, handleLogout }) => {
+const Layout = ({ handleLogout }) => {
   return (
 
     <>
-      <Sidebar/>
-      <section className="home-section">
-      <NavBar/>
-        {children}
-      </section>
+     
+      <NavBar handleLogout={handleLogout}/>
+       <Outlet />
+    <Footer />
     </>
 
   );

@@ -164,9 +164,9 @@ function NotFound() {
         </div>
       </div>
       <div className="info z-50">
-        <h2 className="text-white text-3xl font-bold" >We can't find that page</h2>
-        <p className="text-md">We're fairly sure that page used to be here, but seems to have gone missing. We do apologise on its behalf.</p>
-        <a href="/" className="bg-blue-600 font-semibold" target="_blank" rel="noopener noreferrer">Home</a>
+        <h2 className="text-white text-3xl font-bold" >We can&apos;t find that page</h2>
+        <p className="text-md">We&apos;re fairly sure that page used to be here, but seems to have gone missing. We do apologize on its behalf.</p>
+        <a href="/dashboard" className="bg-blue-600 font-semibold" rel="noopener noreferrer">Home</a>
       </div>
      </broo>
     </div>
